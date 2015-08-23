@@ -19,5 +19,6 @@ module.exports = {
             process.env.MONGOHQ_URL ||
             process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
             'mongodb://localhost/nearby'
-  }
+  },
+  googleMapApiKey: 'AIzaSyAd5B9bYB6uJrw7NaWHMDB6t8DFQn1boT8'
 };
