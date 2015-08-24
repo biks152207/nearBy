@@ -2,18 +2,18 @@
 
 angular.module('nearbyApp')
   .controller('MainCtrl',['$scope','$http', function ($scope, $http) {
-    $scope.errorMsg = false;
+    $scope.loading = false;
     $scope.searchResult = [];
     
     //function to retrieve nearby places
     $scope.searchNearby = function(searchTerm){
-      $scope.errorMsg = true;
+      $scope.loading = true;
       $http.get('/api/search?query=' + searchTerm).success(function(response){
         $scope.searchResult = response.results;
         console.log($scope.searchResult);
-        $scope.errorMsg = false;
+        $scope.loading = false;
       }).error(function(error){
-        $scope.errorMsg = false;
+        $scope.loading = false;
       });
     }
     // first it watches the changes in $scope.search.if newValue not equal to oldValue in invokes above function.
