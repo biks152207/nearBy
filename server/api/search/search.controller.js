@@ -9,7 +9,8 @@ var Search = require('./search.model');
 
 // Get list of searchs
 exports.index = function(req, res) {
-  var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + req.query.location + '&radius=' + req.query.radius + '&types=' + req.query.types + '&name=' + req.query.name + '&key='+ config.googleMapApiKey;
+  var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?location=27.7000,85.3333&radius=1&query=' + req.query.query + '&key=' + config.googleMapApiKey;
+  console.log(url);
   request(url,function(err,response,body){
     res.send(body);
   });
