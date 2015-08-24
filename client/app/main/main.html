@@ -3,9 +3,27 @@
    <md-content layout-padding>
       <md-input-container flex>
           <label>Search anything you want!</label>
-          <input ng-model="search">
+          <input ng-model="search" ng-model-options="{ debounce: 500 }">
       </md-input-container>
    </md-content>
+  </div>
+  <div layout="row" ng-if="errorMsg" layout-sm="column" layout-align="space-around">
+    <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+  </div>
+  <div layout="row" layout-align="center center" ng-if="!errorMsg">
+    <md-content>
+      <md-list>
+        <md-subheader class="md-no-sticky">Results:</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="item in searchResult">
+          <img ng-src="{{item.icon}}" class="md-avatar" alt="{{item.name}}" />
+          <div class="md-list-item-text md-title">
+            <h3>{{ item.name }}</h3>
+            <h4 ng-if="item.opening_hours"><span ng-if="item.opening_hours.open_now" class="md-subhead">Opened</span><span ng-if="!item.opening_hours.open_now">Closed</span></h4>
+            <p>Address:{{ item.formatted_address }}</p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-content>
   </div>
 
 <!-- <header class="hero-unit" id="banner">
